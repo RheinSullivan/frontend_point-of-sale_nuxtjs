@@ -6,21 +6,22 @@
     />
     
     <div class="p-6">
-      <div class="flex justify-end mb-6">
-        <button @click="openAddModal" class="btn-primary">
-          Add New Product
-        </button>
-      </div>
-
-      <div class="card">
+      <div class="flex justify-between">
         <input
           v-model="searchQuery"
           type="text"
           placeholder="Search products..."
           class="input-field max-w-md mb-6"
         />
+        <div class="flex justify-end mb-6">
+          <button @click="openAddModal" class="btn-primary">
+            Add New Product
+          </button>
+        </div>
+      </div>
 
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+      <div class="card">
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           <div
             v-for="product in filteredProducts"
             :key="product.id"

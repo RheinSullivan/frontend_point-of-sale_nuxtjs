@@ -69,7 +69,7 @@
         </div>
 
         <div v-if="selectedOrder" class="space-y-4">
-          <div class="grid grid-cols-2 gap-4 pb-4 border-b">
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-4 pb-4 border-b">
             <div>
               <p class="text-sm text-gray-500">Order ID</p>
               <p class="font-mono">{{ selectedOrder.id }}</p>

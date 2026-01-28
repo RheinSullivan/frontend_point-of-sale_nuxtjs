@@ -3,10 +3,13 @@
     class="fixed inset-y-0 left-0 z-50 flex flex-col bg-gray-900 border-r border-gray-800 transition-all duration-300"
     :class="[appStore.sidebarOpen ? 'w-64' : 'w-20']"
   >
-    <div class="flex items-center justify-between h-16 px-4 border-b border-gray-800">
-      <h1 v-if="appStore.sidebarOpen" class="text-xl font-bold text-primary">
-        Simple POS
-      </h1>
+    <div class="flex items-center justify-between h-[81px] px-4 border-b border-gray-800">
+      <div class="flex flex-col center- gap-1">
+        <h1 v-if="appStore.sidebarOpen" class="text-2xl font-bold italic text-primary">
+          Vyagra Nexus
+        </h1>
+        <p class="text-sm text-gray-400">Point of Sale</p>
+      </div>
       <button
         @click="appStore.toggleSidebar"
         class="p-2 rounded-lg hover:bg-gray-800 transition-colors text-gray-400"
@@ -30,7 +33,7 @@
       </button>
     </div>
 
-    <nav class="flex-1 px-4 py-6 space-y-2 overflow-y-auto">
+    <nav class="flex-1 py-6 space-y-2 overflow-y-auto">
       <NuxtLink
         v-for="item in menuItems"
         :key="item.path"
@@ -45,12 +48,7 @@
       </NuxtLink>
     </nav>
 
-    <div class="p-4 border-t border-gray-800">
-      <div v-if="appStore.sidebarOpen" class="mb-3">
-        <p class="text-sm text-gray-500">Logged in as</p>
-        <p class="font-medium text-gray-100">{{ user?.name }}</p>
-        <p class="text-xs text-gray-500 capitalize">{{ user?.role }}</p>
-      </div>
+    <div class="py-2.5 border-t border-gray-800">
       <button
         @click="handleLogout"
         class="flex items-center space-x-3 w-full px-4 py-3 rounded-lg text-red-400 hover:bg-danger hover:text-white transition-colors"
@@ -162,7 +160,7 @@ const menuItems = computed<MenuItem[]>(() => {
 
   items.push(
     {
-      name: 'Sales Dashboard',
+      name: 'Dashboard',
       path: '/dashboard',
       icon: defineComponent({
         setup() {

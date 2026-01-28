@@ -8,10 +8,10 @@
       
       <div class="flex items-center gap-4">
         <div class="hidden md:block text-right">
-          <p class="text-sm text-gray-400">Logged in as</p>
           <p class="text-sm font-medium text-gray-100">
-            {{ user?.role === 'admin' ? 'Owner' : 'Employee' }} {{ user?.name }}
+            {{ user?.role === 'admin' ? 'Owner Store' : 'Employee' }}
           </p>
+          <p class="text-sm text-gray-400">{{ user?.role }}</p>
         </div>
         
         <button

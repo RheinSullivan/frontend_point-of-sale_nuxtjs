@@ -53,7 +53,7 @@
         <div class="spinner w-12 h-12"></div>
       </div>
 
-      <div v-else class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4">
+      <div v-else class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
         <div
           v-for="product in filteredProducts"
           :key="product.id"

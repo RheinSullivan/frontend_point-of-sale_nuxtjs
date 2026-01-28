@@ -1,4 +1,4 @@
-import { useRuntimeConfig, useRouter, navigateTo } from '#app'
+import { useRuntimeConfig, useRouter } from '#app'
 
 export const useApi = () => {
   const config = useRuntimeConfig()
@@ -72,6 +72,7 @@ export const useApi = () => {
       
       return data
     } catch (error: any) {
+      console.error('API Call Error:', error)
       throw error
     }
   }
