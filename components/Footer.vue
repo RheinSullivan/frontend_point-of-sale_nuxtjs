@@ -1,0 +1,24 @@
+<template>
+  <footer class="border-t border-gray-800 py-6 px-6">
+    <div class="flex flex-col md:flex-row items-center justify-between gap-4">
+      <p class="text-sm text-gray-400">
+        Copyright &copy; {{ currentYear }}
+        <a 
+          href="https://rheinsullivan.web.id/" 
+          target="_blank"
+          class="text-primary hover:text-primary-light hover:underline transition-colors"
+        >
+          Rhein Sullivan
+        </a>
+        . All rights reserved.
+      </p>
+      <p class="text-sm text-gray-400">
+        Simple POS <span class="text-primary">v1.0.0</span>
+      </p>
+    </div>
+  </footer>
+</template>
+
+<script setup lang="ts">
+const currentYear = new Date().getFullYear()
+</script>
