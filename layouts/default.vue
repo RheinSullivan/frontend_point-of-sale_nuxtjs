@@ -1,7 +1,8 @@
 <template>
-  <div class="flex h-screen overflow-hidden bg-[#0f1117]">
+  <div class="flex h-screen overflow-hidden">
     <Sidebar />
     <CartSidebar />
+    <Notification ref="notificationRef" />
     
     <main
       class="flex-1 flex flex-col overflow-hidden transition-all duration-300"
@@ -17,4 +18,11 @@
 import { useAppStore } from '~/stores/app'
 
 const appStore = useAppStore()
+const notificationRef = ref(null)
+
+onMounted(() => {
+  if (notificationRef.value) {
+    window.notificationSystem = notificationRef.value
+  }
+})
 </script>

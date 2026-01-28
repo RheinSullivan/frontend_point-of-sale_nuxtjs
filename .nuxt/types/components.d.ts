@@ -17,6 +17,7 @@ interface _GlobalComponents {
   'CartSidebar': typeof import("../../components/CartSidebar.vue").default
   'Footer': typeof import("../../components/Footer.vue").default
   'Header': typeof import("../../components/Header.vue").default
+  'Notification': typeof import("../../components/Notification.vue").default
   'Sidebar': typeof import("../../components/Sidebar.vue").default
   'NuxtWelcome': typeof import("../../node_modules/nuxt/dist/app/components/welcome.vue").default
   'NuxtLayout': typeof import("../../node_modules/nuxt/dist/app/components/nuxt-layout").default
@@ -44,6 +45,7 @@ interface _GlobalComponents {
   'LazyCartSidebar': LazyComponent<typeof import("../../components/CartSidebar.vue").default>
   'LazyFooter': LazyComponent<typeof import("../../components/Footer.vue").default>
   'LazyHeader': LazyComponent<typeof import("../../components/Header.vue").default>
+  'LazyNotification': LazyComponent<typeof import("../../components/Notification.vue").default>
   'LazySidebar': LazyComponent<typeof import("../../components/Sidebar.vue").default>
   'LazyNuxtWelcome': LazyComponent<typeof import("../../node_modules/nuxt/dist/app/components/welcome.vue").default>
   'LazyNuxtLayout': LazyComponent<typeof import("../../node_modules/nuxt/dist/app/components/nuxt-layout").default>

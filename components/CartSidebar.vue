@@ -108,12 +108,11 @@
     <div v-if="showQRModal" class="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-75" @click.self="closeQRModal">
       <div class="bg-gray-900 rounded-xl p-8 max-w-md w-full mx-4 border border-gray-800">
         <h2 class="text-2xl font-bold text-gray-100 mb-4 text-center">Scan QR Code</h2>
-        <div class="bg-white p-4 rounded-lg mb-4">
+        <div class="bg-white p-4 flex justify-center items-center rounded-lg mb-4">
           <canvas ref="qrCanvas" class="w-full"></canvas>
         </div>
         <p class="text-center text-gray-400 mb-4">Scan this QR code with your payment app</p>
         <button @click="closeQRModal" class="w-full btn-secondary flex items-center justify-center gap-2">
-          <i class="pi pi-times"></i>
           Cancel
         </button>
       </div>
@@ -137,7 +136,6 @@ const subtotal = computed(() => appStore.cartTotal)
 const tax = computed(() => Math.round(subtotal.value * 0.1))
 const total = computed(() => subtotal.value + tax.value)
 
-// Computed untuk disabled state (boolean)
 const isProcessing = computed(() => {
   return processingType.value !== ''
 })

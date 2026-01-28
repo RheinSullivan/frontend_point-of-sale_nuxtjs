@@ -7,12 +7,20 @@
     @apply border-gray-700;
   }
 
+  html.light * {
+    @apply border-gray-300;
+  }
+
   body {
-    @apply bg-[#0f1117] text-gray-100 font-sans antialiased;
+    @apply font-sans antialiased;
   }
 
   html.light body {
-    @apply bg-gray-50 text-gray-900;
+    @apply bg-gray-100 text-gray-900;
+  }
+
+  html.dark body {
+    @apply bg-[#0f1117] text-gray-100;
   }
 
   html {
@@ -70,7 +78,7 @@
   }
 
   html.light .btn-secondary {
-    @apply bg-gray-200 text-gray-800 hover:bg-gray-300 active:bg-gray-400 focus:ring-offset-white;
+    @apply bg-gray-200 text-gray-800 hover:bg-gray-300 active:bg-gray-400 focus:ring-offset-white focus:ring-gray-400;
   }
   
   .btn-danger {
@@ -169,6 +177,62 @@
   html.light .alert-error {
     @apply bg-red-100 border-red-300 text-red-800;
   }
+}
+
+html.light .bg-gray-900 {
+  @apply bg-white;
+}
+
+html.light .bg-gray-800 {
+  @apply bg-gray-100;
+}
+
+html.light .bg-gray-700 {
+  @apply bg-gray-200;
+}
+
+html.light .text-gray-100 {
+  @apply text-gray-900;
+}
+
+html.light .text-gray-200 {
+  @apply text-gray-800;
+}
+
+html.light .text-gray-300 {
+  @apply text-gray-700;
+}
+
+html.light .text-gray-400 {
+  @apply text-gray-600;
+}
+
+html.light .text-gray-500 {
+  color: #6b7280;
+}
+
+html.light .border-gray-800 {
+  @apply border-gray-200;
+}
+
+html.light .border-gray-700 {
+  @apply border-gray-300;
+}
+
+html.light .hover\:bg-gray-800:hover {
+  @apply bg-gray-100;
+}
+
+html.light .hover\:bg-gray-700:hover {
+  @apply bg-gray-200;
+}
+
+html.light .hover\:bg-gray-600:hover {
+  @apply bg-gray-300;
+}
+
+html.light .hover\:text-gray-100:hover {
+  @apply text-gray-900;
 }
 
 @keyframes slideInRight {

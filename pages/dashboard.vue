@@ -1,43 +1,43 @@
 <template>
   <div class="flex-1 overflow-y-auto">
     <Header 
-      title="Sales Dashboard" 
-      subtitle="Monitor your sales performance and analytics"
+      :title="t('salesDashboard')" 
+      :subtitle="t('monitorSales')"
     />
     
     <div class="p-6 space-y-6">
       <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
         <div class="card bg-gradient-to-br from-blue-600 to-blue-700 border-blue-600">
-          <p class="text-sm text-blue-100 mb-1">Today's Sales</p>
+          <p class="text-sm text-blue-100 mb-1">{{ t('todaySales') }}</p>
           <p class="text-3xl font-bold text-white">Rp {{ formatNumber(stats.today_sales) }}</p>
-          <p class="text-sm text-blue-100 mt-1">{{ stats.today_orders }} orders</p>
+          <p class="text-sm text-blue-100 mt-1">{{ stats.today_orders }} {{ t('orders') }}</p>
         </div>
 
         <div class="card bg-gradient-to-br from-primary to-primary-dark border-primary">
-          <p class="text-sm text-green-100 mb-1">Monthly Sales</p>
+          <p class="text-sm text-green-100 mb-1">{{ t('monthlySales') }}</p>
           <p class="text-3xl font-bold text-white">Rp {{ formatNumber(stats.month_sales) }}</p>
-          <p class="text-sm text-green-100 mt-1">{{ stats.month_orders }} orders</p>
+          <p class="text-sm text-green-100 mt-1">{{ stats.month_orders }} {{ t('orders') }}</p>
         </div>
 
         <div class="card bg-gradient-to-br from-purple-600 to-purple-700 border-purple-600">
-          <p class="text-sm text-purple-100 mb-1">Total Products</p>
+          <p class="text-sm text-purple-100 mb-1">{{ t('totalProducts') }}</p>
           <p class="text-3xl font-bold text-white">{{ stats.total_products }}</p>
         </div>
 
         <div class="card bg-gradient-to-br from-orange-600 to-orange-700 border-orange-600">
-          <p class="text-sm text-orange-100 mb-1">Categories</p>
+          <p class="text-sm text-orange-100 mb-1">{{ t('categories') }}</p>
           <p class="text-3xl font-bold text-white">{{ stats.total_categories }}</p>
         </div>
       </div>
 
       <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
         <div class="card">
-          <h2 class="text-xl font-bold text-gray-100 mb-4">Sales Chart (7 Days)</h2>
+          <h2 class="text-xl font-bold text-gray-100 mb-4">{{ t('salesChart') }}</h2>
           <canvas ref="salesChart"></canvas>
         </div>
 
         <div class="card">
-          <h2 class="text-xl font-bold text-gray-100 mb-4">Top Products</h2>
+          <h2 class="text-xl font-bold text-gray-100 mb-4">{{ t('topProducts') }}</h2>
           <div class="space-y-3">
             <div
               v-for="product in topProducts"
@@ -46,7 +46,7 @@
             >
               <div>
                 <p class="font-medium text-gray-100">{{ product.name }}</p>
-                <p class="text-sm text-gray-400">{{ product.total_sold }} sold</p>
+                <p class="text-sm text-gray-400">{{ product.total_sold }} {{ t('sold') }}</p>
               </div>
               <p class="font-bold text-primary">Rp {{ formatNumber(product.total_revenue) }}</p>
             </div>
@@ -93,6 +93,7 @@ interface TopProduct {
 }
 
 const { apiCall } = useApi()
+const { t } = useI18n()
 
 const stats = ref<Stats>({
   today_sales: 0,

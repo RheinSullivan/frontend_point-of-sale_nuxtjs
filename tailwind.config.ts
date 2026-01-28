@@ -1,5 +1,6 @@
 /** @type {import('tailwindcss').Config} */
 export default {
+  darkMode: 'class',
   content: [
     "./components/**/*.{js,vue,ts}",
     "./layouts/**/*.vue",
@@ -70,6 +71,9 @@ export default {
           700: '#b45309',
           800: '#92400e',
           900: '#78350f',
+        },
+        dark:{
+          dark: '#0f1117',
         },
       },
       fontFamily: {

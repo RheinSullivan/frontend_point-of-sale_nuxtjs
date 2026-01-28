@@ -7,6 +7,7 @@ interface CartItem {
   quantity: number
   category_id?: string
   category_name?: string
+  images?: string[]
 }
 
 interface AppState {
@@ -29,6 +30,20 @@ export const useAppStore = defineStore('app', {
 
     cartTotal: (state): number => {
       return state.cart.reduce((total, item) => total + (item.price * item.quantity), 0)
+    },
+
+    cartSubtotal: (state): number => {
+      return state.cart.reduce((total, item) => total + (item.price * item.quantity), 0)
+    },
+
+    cartTax: (state): number => {
+      return Math.round(state.cart.reduce((total, item) => total + (item.price * item.quantity), 0) * 0.1)
+    },
+
+    cartGrandTotal: (state): number => {
+      const subtotal = state.cart.reduce((total, item) => total + (item.price * item.quantity), 0)
+      const tax = Math.round(subtotal * 0.1)
+      return subtotal + tax
     }
   },
 
@@ -57,7 +72,8 @@ export const useAppStore = defineStore('app', {
           price: product.price,
           quantity: 1,
           category_id: product.category_id,
-          category_name: product.category_name
+          category_name: product.category_name,
+          images: product.images || []
         })
       }
     },
@@ -84,6 +100,14 @@ export const useAppStore = defineStore('app', {
     clearCart() {
       this.cart = []
       this.cartOpen = false
+    },
+
+    getCartItemsForOrder() {
+      return this.cart.map(item => ({
+        product_id: item.id,
+        price: item.price,
+        quantity: item.quantity
+      }))
     }
   }
 })

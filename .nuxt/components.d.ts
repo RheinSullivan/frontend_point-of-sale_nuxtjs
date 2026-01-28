@@ -17,6 +17,7 @@ type LazyComponent<T> = DefineComponent<HydrationStrategies, {}, {}, {}, {}, {},
 export const CartSidebar: typeof import("../components/CartSidebar.vue").default
 export const Footer: typeof import("../components/Footer.vue").default
 export const Header: typeof import("../components/Header.vue").default
+export const Notification: typeof import("../components/Notification.vue").default
 export const Sidebar: typeof import("../components/Sidebar.vue").default
 export const NuxtWelcome: typeof import("../node_modules/nuxt/dist/app/components/welcome.vue").default
 export const NuxtLayout: typeof import("../node_modules/nuxt/dist/app/components/nuxt-layout").default
@@ -44,6 +45,7 @@ export const NuxtIsland: typeof import("../node_modules/nuxt/dist/app/components
 export const LazyCartSidebar: LazyComponent<typeof import("../components/CartSidebar.vue").default>
 export const LazyFooter: LazyComponent<typeof import("../components/Footer.vue").default>
 export const LazyHeader: LazyComponent<typeof import("../components/Header.vue").default>
+export const LazyNotification: LazyComponent<typeof import("../components/Notification.vue").default>
 export const LazySidebar: LazyComponent<typeof import("../components/Sidebar.vue").default>
 export const LazyNuxtWelcome: LazyComponent<typeof import("../node_modules/nuxt/dist/app/components/welcome.vue").default>
 export const LazyNuxtLayout: LazyComponent<typeof import("../node_modules/nuxt/dist/app/components/nuxt-layout").default>

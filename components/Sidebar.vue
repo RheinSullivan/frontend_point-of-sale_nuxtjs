@@ -6,12 +6,12 @@
     <div class="flex items-center justify-between h-[81px] px-4 border-b border-gray-800">
       <div class="flex flex-col gap-1">
         <h1 v-if="appStore.sidebarOpen" class="text-2xl font-bold italic text-primary">
-          Vyagra Nexus
+          {{ t('vyagraNexus') }}
         </h1>
         <h1 v-else class="text-2xl font-bold text-primary">
           VN
         </h1>
-        <p v-if="appStore.sidebarOpen" class="text-sm text-gray-400">Point of Sale</p>
+        <p v-if="appStore.sidebarOpen" class="text-sm text-gray-400">{{ t('pointOfSale') }}</p>
         <p v-else class="text-xs text-gray-400">POS</p>
       </div>
       <button
@@ -43,7 +43,7 @@
         class="flex items-center space-x-3 w-full px-4 py-3 rounded-lg text-red-400 hover:bg-danger hover:text-white transition-colors"
       >
         <i class="pi pi-sign-out text-xl shrink-0"></i>
-        <span v-if="appStore.sidebarOpen" class="font-medium">Logout</span>
+        <span v-if="appStore.sidebarOpen" class="font-medium">{{ t('logout') }}</span>
       </button>
     </div>
   </div>
@@ -67,6 +67,7 @@ interface MenuItem {
 
 const appStore = useAppStore()
 const { getUser, removeToken } = useApi()
+const { t } = useI18n()
 const router = useRouter()
 const route = useRoute()
 
@@ -79,12 +80,12 @@ onMounted(() => {
 const menuItems = computed<MenuItem[]>(() => {
   const items: MenuItem[] = [
     {
-      name: 'Dashboard',
+      name: t('dashboard'),
       path: '/dashboard',
       icon: 'pi pi-chart-bar'
     },
     {
-      name: 'Create Order',
+      name: t('createOrder'),
       path: '/',
       icon: 'pi pi-shopping-cart'
     }
@@ -93,12 +94,12 @@ const menuItems = computed<MenuItem[]>(() => {
   if (user.value?.role === 'admin') {
     items.push(
       {
-        name: 'Category Management',
+        name: t('categoryManagement'),
         path: '/categories',
         icon: 'pi pi-tags'
       },
       {
-        name: 'Product Management',
+        name: t('productManagement'),
         path: '/products',
         icon: 'pi pi-box'
       }

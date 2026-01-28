@@ -1,14 +1,14 @@
 <template>
   <div class="flex-1 overflow-y-auto">
     <Header 
-      title="Category Management" 
-      subtitle="Organize your products with custom categories"
+      :title="t('categoryManagement')" 
+      :subtitle="t('organizeProducts')"
     />
     
     <div class="p-6">
       <div class="flex justify-end mb-6">
         <button @click="openAddModal" class="btn-primary">
-          Add New Category
+          {{ t('addNewCategory') }}
         </button>
       </div>
 
@@ -19,20 +19,20 @@
           class="card"
         >
           <h3 class="text-xl font-bold text-gray-100 mb-1">{{ category.name }}</h3>
-          <p class="text-gray-400 mb-4">{{ category.product_count }} Products</p>
+          <p class="text-gray-400 mb-4">{{ category.product_count }} {{ t('products') }}</p>
           
           <div class="flex gap-3">
             <button
               @click="openEditModal(category)"
               class="flex-1 btn-secondary"
             >
-              Edit
+              {{ t('edit') }}
             </button>
             <button
               @click="deleteCategory(category.id)"
               class="flex-1 btn-danger"
             >
-              Delete
+              {{ t('delete') }}
             </button>
           </div>
         </div>
@@ -41,24 +41,24 @@
       <div v-if="showModal" class="modal-overlay animate-fade-in" @click.self="closeModal">
         <div class="modal-content animate-scale-in">
           <h2 class="text-2xl font-bold text-gray-100 mb-6">
-            {{ isEdit ? 'Edit Category' : 'Add New Category' }}
+            {{ isEdit ? t('editCategory') : t('addCategory') }}
           </h2>
           
           <form @submit.prevent="saveCategory" class="space-y-4">
             <div>
-              <label class="block text-sm font-medium text-gray-300 mb-2">Category Name</label>
+              <label class="block text-sm font-medium text-gray-300 mb-2">{{ t('categoryName') }}</label>
               <input
                 v-model="formData.name"
                 type="text"
                 required
                 class="input-field"
-                placeholder="Enter category name"
+                :placeholder="t('enterCategoryName')"
               />
             </div>
 
             <div class="flex gap-3 pt-4">
-              <button type="submit" class="flex-1 btn-primary">Save</button>
-              <button type="button" @click="closeModal" class="flex-1 btn-secondary">Cancel</button>
+              <button type="submit" class="flex-1 btn-primary">{{ t('save') }}</button>
+              <button type="button" @click="closeModal" class="flex-1 btn-secondary">{{ t('cancel') }}</button>
             </div>
           </form>
         </div>
@@ -91,6 +91,7 @@ interface FormData {
 }
 
 const { apiCall } = useApi()
+const { t } = useI18n()
 
 const categories = ref<Category[]>([])
 const showModal = ref<boolean>(false)
@@ -136,28 +137,45 @@ const saveCategory = async (): Promise<void> => {
         method: 'PUT',
         body: JSON.stringify({ name: formData.value.name })
       })
+      
+      if (window.notificationSystem) {
+        window.notificationSystem.addNotification('success', t('success'), t('categoryUpdated'))
+      }
     } else {
       await apiCall('/categories', {
         method: 'POST',
         body: JSON.stringify({ name: formData.value.name })
       })
+      
+      if (window.notificationSystem) {
+        window.notificationSystem.addNotification('success', t('success'), t('categoryCreated'))
+      }
     }
     
     closeModal()
     await loadData()
   } catch (error: any) {
-    alert('Error: ' + error.message)
+    if (window.notificationSystem) {
+      window.notificationSystem.addNotification('error', t('error'), error.message)
+    }
   }
 }
 
 const deleteCategory = async (id: string): Promise<void> => {
-  if (!confirm('Delete this category? All products in this category will also be deleted.')) return
+  if (!confirm(t('deleteCategoryConfirm'))) return
   
   try {
     await apiCall(`/categories/${id}`, { method: 'DELETE' })
+    
+    if (window.notificationSystem) {
+      window.notificationSystem.addNotification('success', t('success'), t('categoryDeleted'))
+    }
+    
     await loadData()
   } catch (error: any) {
-    alert('Error: ' + error.message)
+    if (window.notificationSystem) {
+      window.notificationSystem.addNotification('error', t('error'), error.message)
+    }
   }
 }
 </script>
