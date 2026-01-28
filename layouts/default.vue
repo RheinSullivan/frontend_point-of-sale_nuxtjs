@@ -9,7 +9,9 @@
       :class="[appStore.sidebarOpen ? 'ml-72' : 'ml-24']"
     >
       <slot />
-      <Footer />
+      <div class="border-t border-gray-800">
+        <Footer />
+      </div>
     </main>
   </div>
 </template>

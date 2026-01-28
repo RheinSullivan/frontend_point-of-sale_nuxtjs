@@ -1,5 +1,5 @@
 <template>
-  <footer class="border-t border-gray-800 py-6 px-6">
+  <footer class="py-6 px-6">
     <div class="flex flex-col md:flex-row items-center justify-between gap-4">
       <p class="text-sm text-gray-400">
         {{ t('copyright') }} &copy; {{ currentYear }}
