@@ -5,7 +5,7 @@
     
     <main
       class="flex-1 flex flex-col overflow-hidden transition-all duration-300"
-      :class="[appStore.sidebarOpen ? 'ml-64' : 'ml-20']"
+      :class="[appStore.sidebarOpen ? 'ml-72' : 'ml-24']"
     >
       <slot />
       <Footer />

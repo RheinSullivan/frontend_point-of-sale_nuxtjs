@@ -43,7 +43,7 @@
                 Edit
               </button>
               <button
-                @click="deleteProduct(product.id)"
+                @click="deleteProduct(product.id, product.name)"
                 class="flex-1 btn-danger"
               >
                 Delete
@@ -107,11 +107,11 @@ import { ref, computed, onMounted } from 'vue'
 
 definePageMeta({
   middleware: 'auth',
-  title: 'Product Management - Simple POS'
+  title: 'Product Management - Point of Sale'
 })
 
 useHead({
-  title: 'Product Management - Simple POS'
+  title: 'Product Management - Point of Sale'
 })
 
 interface Product {
@@ -214,14 +214,19 @@ const saveProduct = async (): Promise<void> => {
   }
 }
 
-const deleteProduct = async (id: string): Promise<void> => {
-  if (!confirm('Delete this product?')) return
+const deleteProduct = async (id: string, name: string): Promise<void> => {
+  if (!confirm(`Delete product "${name}"?`)) return
   
   try {
     await apiCall(`/products/${id}`, { method: 'DELETE' })
+    alert('Product deleted successfully')
     await loadData()
   } catch (error: any) {
-    alert('Error: ' + error.message)
+    if (error.message.includes('Cannot delete product')) {
+      alert('Cannot delete this product because it exists in order history. You can mark it as inactive in the backend.')
+    } else {
+      alert('Error: ' + error.message)
+    }
   }
 }
 

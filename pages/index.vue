@@ -1,9 +1,11 @@
 <template>
   <div class="flex-1 overflow-y-auto">
     <Header 
-      title="Dashboard" 
-      subtitle="Welcome to your Simple POS system dashboard."
+      title="Create Order" 
+      subtitle="Select products to add to cart"
     />
+    
+    <CartSidebar />
     
     <div class="p-6 space-y-6">
       <div class="flex items-center gap-4">
@@ -14,10 +16,20 @@
             placeholder="Search products..."
             class="input-field pl-10"
           />
-          <svg class="w-5 h-5 text-gray-500 absolute left-3 top-1/2 -translate-y-1/2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
-          </svg>
+          <i class="pi pi-search text-gray-500 absolute left-3 top-1/2 -translate-y-1/2"></i>
         </div>
+        
+        <button
+          v-if="appStore.cart.length > 0"
+          @click="appStore.openCart"
+          class="relative btn-primary flex items-center gap-2"
+        >
+          <i class="pi pi-shopping-cart"></i>
+          <span>Cart ({{ appStore.cartItemCount }})</span>
+          <span class="absolute -top-2 -right-2 bg-red-500 text-white text-xs rounded-full w-6 h-6 flex items-center justify-center">
+            {{ appStore.cartItemCount }}
+          </span>
+        </button>
       </div>
 
       <div class="flex gap-2 overflow-x-auto pb-2">
@@ -64,11 +76,10 @@
             <span class="text-gray-600 text-4xl font-bold">600×400</span>
           </div>
           <h3 class="font-semibold text-gray-100 mb-1 group-hover:text-primary transition-colors">{{ product.name }}</h3>
-          <p class="text-lg font-bold text-primary">Rp {{ formatNumber(product.price) }}</p>
-          <button class="mt-3 w-full bg-primary hover:bg-primary-dark text-white py-2 rounded-lg transition-colors flex items-center justify-center gap-2">
-            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4" />
-            </svg>
+          <p class="text-lg font-bold text-primary mb-3">Rp {{ formatNumber(product.price) }}</p>
+          <button class="w-full bg-primary hover:bg-primary-dark text-white py-2 rounded-lg transition-colors flex items-center justify-center gap-2">
+            <i class="pi pi-plus"></i>
+            Add to Cart
           </button>
         </div>
       </div>
@@ -82,11 +93,11 @@ import { useAppStore } from '~/stores/app'
 
 definePageMeta({
   middleware: 'auth',
-  title: 'Create Order - Simple POS'
+  title: 'Create Order - Point of Sale'
 })
 
 useHead({
-  title: 'Create Order - Simple POS'
+  title: 'Create Order - Point of Sale'
 })
 
 interface Product {
@@ -154,6 +165,7 @@ const loadData = async (): Promise<void> => {
 
 const addToCart = (product: Product): void => {
   appStore.addToCart(product)
+  appStore.openCart()
 }
 
 const formatNumber = (num: number): string => {

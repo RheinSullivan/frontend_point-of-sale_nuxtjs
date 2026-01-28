@@ -51,12 +51,19 @@ export const useApi = () => {
     }
     
     try {
+      console.log(`API Call: ${config.public.apiBase}${endpoint}`)
+      
       const response = await fetch(`${config.public.apiBase}${endpoint}`, {
         ...options,
-        headers
+        headers,
+        mode: 'cors',
+        credentials: 'omit'
       })
       
+      console.log(`Response Status: ${response.status}`)
+      
       if (response.status === 401 || response.status === 403) {
+        console.log('Unauthorized, removing token')
         removeToken()
         if (process.client) {
           router.push('/login')
@@ -65,9 +72,10 @@ export const useApi = () => {
       }
       
       const data = await response.json()
+      console.log(`Response Data:`, data)
       
       if (!response.ok) {
-        throw new Error(data.message || 'Request failed')
+        throw new Error(data.message || `Request failed with status ${response.status}`)
       }
       
       return data
