@@ -1,7 +1,6 @@
 import { ref, computed } from 'vue'
 
 type Locale = 'en' | 'id'
-
 const currentLocale = ref<Locale>('id')
 
 const translations = {
@@ -11,7 +10,8 @@ const translations = {
     categoryManagement: 'Category Management',
     productManagement: 'Product Management',
     logout: 'Logout',
-    ownerStore: 'Owner Store',
+    owner: 'Owner Store',
+    administrator: 'Admin Apps',
     employee: 'Employee',
     selectProducts: 'Select products to add to cart',
     searchProducts: 'Search products...',
@@ -95,7 +95,8 @@ const translations = {
     categoryManagement: 'Manajemen Kategori',
     productManagement: 'Manajemen Produk',
     logout: 'Keluar',
-    ownerStore: 'Pemilik Toko',
+    owner: 'Pemilik Toko',
+    administrator: 'Admin Aplikasi',
     employee: 'Karyawan',
     selectProducts: 'Pilih produk untuk ditambahkan ke keranjang',
     searchProducts: 'Cari produk...',

@@ -158,14 +158,14 @@ const checkout = async (paymentMethod: string) => {
       payment_method_id: paymentMethod
     }
     
-    console.log('Creating order:', orderData)
+    // console.log('Creating order:', orderData)
     
     const order = await apiCall('/orders', {
       method: 'POST',
       body: JSON.stringify(orderData)
     })
     
-    console.log('Order created:', order)
+    // console.log('Order created:', order)
     
     if (paymentMethod === 'qris') {
       const qrData = await apiCall(`/orders/${order.id}/create-qris`, {
@@ -191,7 +191,7 @@ const checkout = async (paymentMethod: string) => {
       appStore.clearCart()
     }
   } catch (error: any) {
-    console.error('Checkout error:', error)
+    // console.error('Checkout error:', error)
     alert('Error: ' + (error.message || 'Checkout failed'))
   } finally {
     processingType.value = ''

@@ -11,7 +11,7 @@
           <p class="font-medium text-gray-100">
             {{ user?.name }}
           </p>
-          <p class="text-xs text-gray-400">{{ user?.role === 'admin' ? t('ownerStore') : t('employee') }}</p>
+          <p class="text-xs text-gray-400">{{ user?.role === 'admin' ? t('administrator') : t('employee') }}</p>
         </div>
         
         <button
